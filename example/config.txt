@@ -1,0 +1,2 @@
+Prefix plugins/Pie/example
+Plugin Pie inputfile parameters.txt outputfile piechart
