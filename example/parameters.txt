@@ -1,4 +1,4 @@
-otufile	plugins/Pie/example/asv_abund.norm.transpose.csv
-mapping	plugins/Pie/example/asv_map.csv
-tree	plugins/Pie/example/asv_tax.csv
+otufile	asv_abund.norm.transpose.csv
+mapping	asv_map.csv
+tree	asv_tax.csv
 column	B1

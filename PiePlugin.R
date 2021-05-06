@@ -1,3 +1,6 @@
+dyn.load(paste("RPluMA", .Platform$dynlib.ext, sep=""))
+source("RPluMA.R")
+
 library(microbiome)
 library(ggplot2)
 #library(phyloseq)
@@ -5,12 +8,27 @@ library(ape)
 library(psadd)
 
 input <- function(inputfile) {
+  pfix = prefix()
+  if (length(pfix) != 0) {
+     pfix <- paste(pfix, "/", sep="")
+  }
   parameters <<- read.table(inputfile, as.is=T);
   rownames(parameters) <<- parameters[,1]; 
    # Need to get the three files
    otu.path <<- parameters["otufile", 2]
    tree.path <<- parameters["tree", 2]
    map.path <<- parameters["mapping", 2]
+ 
+     if (!(startsWith(otu.path, "/"))) {
+   otu.path <<- paste(pfix, otu.path, sep="")
+  }
+  if (!(startsWith(tree.path, "/"))) {
+   tree.path <<- paste(pfix, tree.path, sep="")
+  }
+  if (!(startsWith(map.path, "/"))) {
+   map.path <<- paste(pfix, map.path, sep="")
+  }
+
    diffcol <<- parameters["column", 2]
    #HMP <<- import_qiime(otu.path, map.path, tree.path, parseFunction = parse_taxonomy_qiime)
 }
